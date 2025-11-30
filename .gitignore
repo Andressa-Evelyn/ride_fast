@@ -26,3 +26,5 @@ erl_crash.dump
 ride_fast-*.tar
 
 mysql_data
+
+docker-compose.yaml
