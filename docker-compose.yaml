@@ -1,0 +1,13 @@
+services:
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword   # senha do usuário root
+      MYSQL_DATABASE: ride_fast_api         # cria um banco inicial
+      MYSQL_USER: myuser                  # cria um usuário adicional
+      MYSQL_PASSWORD: mypassword          # senha do usuário adicional
+    ports:
+      - "3306:3306"                       # expõe a porta padrão do MySQL
+    volumes:
+      - ./mysql_data:/var/lib/mysql       # persistência dos dados
