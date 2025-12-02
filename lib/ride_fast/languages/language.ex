@@ -3,7 +3,6 @@ defmodule RideFast.Languages.Language do
   import Ecto.Changeset
 
   schema "languages" do
-    field :id, :integer
     field :code, :string
     field :name, :string
 
@@ -13,7 +12,7 @@ defmodule RideFast.Languages.Language do
   @doc false
   def changeset(language, attrs) do
     language
-    |> cast(attrs, [:id, :code, :name])
-    |> validate_required([:id, :code, :name])
+    |> cast(attrs, [ :code, :name])
+    |> validate_required([:code, :name])
   end
 end

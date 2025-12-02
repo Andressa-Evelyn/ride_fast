@@ -3,7 +3,6 @@ defmodule RideFast.Repo.Migrations.CreateLanguages do
 
   def change do
     create table(:languages) do
-      add :id, :integer
       add :code, :string
       add :name, :string
 

@@ -8,7 +8,10 @@ defmodule RideFastWeb.Router do
   #rotas vão aqui
   scope "/api", RideFastWeb do
     pipe_through :api
+
+    post "/auth/register", AuthController, :register
   end
+
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:ride_fast, :dev_routes) do
