@@ -6,8 +6,7 @@ defmodule RideFast.Repo.Migrations.CreateUsers do
       add :name, :string
       add :email, :string
       add :phone, :string
-      add :password_hash, :string
-      add :created_at, :naive_datetime
+      add :password, :string
 
       timestamps(type: :utc_datetime)
     end

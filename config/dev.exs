@@ -4,9 +4,10 @@ import Config
 config :ride_fast, RideFast.Repo,
   username: "myuser",
   password: "mypassword",
-  hostname: "localhost",
-  database: "ride_fast_api",
+  hostname: "mysql",
+  database: "mydatabase",
   stacktrace: true,
+  port: 3306,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10,
   adapter: Ecto.Adapters.MyXQL
@@ -20,7 +21,7 @@ config :ride_fast, RideFast.Repo,
 config :ride_fast, RideFastWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}],
+  http: [ip: {0, 0, 0, 0}],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,

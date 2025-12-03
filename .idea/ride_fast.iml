@@ -3,7 +3,44 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/bandit" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/bcrypt_elixir" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/comeonin" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/db_connection" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/decimal" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/dns_cluster" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_sql" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/elixir_make" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/expo" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/finch" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/gettext" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/hpax" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/idna" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/jason" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/mime" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/mint" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/myxql" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/nimble_options" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/nimble_pool" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix_ecto" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix_html" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix_live_dashboard" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix_live_view" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix_pubsub" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix_template" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/plug" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/plug_crypto" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/req" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/swoosh" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/telemetry" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/telemetry_metrics" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/telemetry_poller" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/thousand_island" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/unicode_util_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/websock" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/websock_adapter" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -92,5 +129,8 @@
     <orderEntry type="library" name="x509" level="project" />
     <orderEntry type="library" name="mimic" level="project" />
     <orderEntry type="library" name="hpack" level="project" />
+    <orderEntry type="library" name="bcrypt_elixir" level="project" />
+    <orderEntry type="library" name="comeonin" level="project" />
+    <orderEntry type="library" name="elixir_make" level="project" />
   </component>
 </module>

@@ -13,7 +13,7 @@ config :ride_fast,
 
 # Configure the endpoint
 config :ride_fast, RideFastWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "0.0.0.0"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [json: RideFastWeb.ErrorJSON],

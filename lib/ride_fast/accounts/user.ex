@@ -6,8 +6,7 @@ defmodule RideFast.Accounts.User do
     field :name, :string
     field :email, :string
     field :phone, :string
-    field :password_hash, :string
-    field :created_at, :naive_datetime
+    field :password, :string
 
     timestamps(type: :utc_datetime)
   end
@@ -15,8 +14,8 @@ defmodule RideFast.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :phone, :password_hash, :created_at])
-    |> validate_required([:name, :email, :phone, :password_hash, :created_at])
+    |> cast(attrs, [:name, :email, :phone, :password])
+    |> validate_required([:name, :email, :phone, :password])
     |> unique_constraint(:email)
   end
 end

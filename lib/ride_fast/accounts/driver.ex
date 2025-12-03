@@ -6,9 +6,8 @@ defmodule RideFast.Accounts.Driver do
     field :name, :string
     field :email, :string
     field :phone, :string
-    field :password_hash, :string
+    field :password, :string
     field :status, :string
-    field :created_at, :naive_datetime
 
     timestamps(type: :utc_datetime)
   end
@@ -16,8 +15,8 @@ defmodule RideFast.Accounts.Driver do
   @doc false
   def changeset(driver, attrs) do
     driver
-    |> cast(attrs, [:name, :email, :phone, :password_hash, :status, :created_at])
-    |> validate_required([:name, :email, :phone, :password_hash, :status, :created_at])
+    |> cast(attrs, [:name, :email, :phone, :password, :status])
+    |> validate_required([:name, :email, :phone, :password, :status])
     |> unique_constraint(:email)
   end
 end
