@@ -5,12 +5,15 @@ defmodule RideFastWeb.Router do
     plug :accepts, ["json"]
   end
 
+
   #rotas vão aqui
   scope "/api", RideFastWeb do
     pipe_through :api
 
     post "/auth/register", AuthController, :register
     post "/auth/login", AuthController, :login
+    get "/users", UserController, :index
+
   end
 
 

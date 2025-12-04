@@ -145,5 +145,7 @@
     <orderEntry type="library" name="poison" level="project" />
     <orderEntry type="library" name="thoas" level="project" />
     <orderEntry type="library" name="earmark" level="project" />
+    <orderEntry type="library" name="scrivener_ecto" level="project" />
+    <orderEntry type="library" name="scrivener" level="project" />
   </component>
 </module>

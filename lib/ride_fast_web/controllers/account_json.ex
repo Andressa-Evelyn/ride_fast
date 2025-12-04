@@ -1,6 +1,7 @@
 defmodule RideFastWeb.AccountJson do
   alias RideFast.Accounts.Driver
   alias RideFast.Accounts.User
+  alias RideFast.Accounts.Admin
 
   def show(%{account: account}) do
     data(account)
@@ -25,6 +26,14 @@ defmodule RideFastWeb.AccountJson do
     }
   end
 
+  defp data(%Admin{} = admin) do
+    %{
+      id: admin.id,
+      name: admin.name,
+      email: admin.email,
+      password_hash: admin.password_hash
+    }
+  end
 
 
   end
