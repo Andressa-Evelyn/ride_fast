@@ -44,6 +44,7 @@ defmodule RideFast.MixProject do
       {:ecto_sql, "~> 3.13"},
       {:myxql, "~> 0.7.0"},
       {:bcrypt_elixir, "~> 3.0"},
+      {:guardian, "~> 2.0"},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:swoosh, "~> 1.16"},
       {:req, "~> 0.5"},

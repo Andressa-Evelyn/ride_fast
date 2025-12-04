@@ -10,6 +10,7 @@ defmodule RideFastWeb.Router do
     pipe_through :api
 
     post "/auth/register", AuthController, :register
+    post "/auth/login", AuthController, :login
   end
 
 

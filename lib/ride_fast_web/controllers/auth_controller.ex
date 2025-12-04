@@ -3,6 +3,7 @@ defmodule RideFastWeb.AuthController do
   alias RideFast.Accounts
   alias RideFastWeb.AccountJson
   alias Ecto.Changeset
+  alias RideFastWeb.Auth.Guardian
 
   def register(conn, params) do
     case Accounts.register_user_or_driver(params) do
@@ -35,5 +36,25 @@ defmodule RideFastWeb.AuthController do
         String.replace(acc, "%#{key}", to_string(value))
       end)
     end)
+  end
+
+  def login(conn, %{"email" => email, "password" => password}) do
+    case Accounts.authenticate(email, password) do
+      {:ok, account} ->
+        {:ok, token, _claims} = Guardian.encode_and_sign(account)
+
+        conn
+        |> put_status(:ok)
+        |> json(%{
+          message: "Login successful",
+          token: token,
+          user: AccountJson.show(%{account: account})
+        })
+
+      {:error, :invalid_credentials} ->
+        conn
+        |> put_status(:unauthorized)
+        |> json(%{error: "Invalid email or password"})
+    end
   end
 end

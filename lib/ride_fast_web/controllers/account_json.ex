@@ -1,6 +1,6 @@
 defmodule RideFastWeb.AccountJson do
   alias RideFast.Accounts.Driver
- # alias RideFast.Accounts.User
+  alias RideFast.Accounts.User
 
   def show(%{account: account}) do
     data(account)
@@ -15,5 +15,16 @@ defmodule RideFastWeb.AccountJson do
       status: driver.status
     }
   end
+
+  defp data(%User{} = user) do
+    %{
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone
+    }
+  end
+
+
 
   end

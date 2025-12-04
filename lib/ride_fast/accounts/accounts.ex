@@ -5,7 +5,10 @@ defmodule RideFast.Accounts do
   alias RideFast.Accounts.{User, Driver}
   alias Bcrypt
 
-  # Função principal chamada pelo AuthController
+  # ===========================
+  #  REGISTRO
+  # ===========================
+
   def register_user_or_driver(%{"role" => "user"} = attrs) do
     create_user(attrs)
   end
@@ -17,8 +20,7 @@ defmodule RideFast.Accounts do
   def register_user_or_driver(_),
       do: {:error, "role must be 'user' or 'driver'"}
 
-  # =============== CRIA USER ===================
-
+  # ------------ CRIA USER --------------
   defp create_user(attrs) do
     attrs =
       attrs
@@ -29,10 +31,8 @@ defmodule RideFast.Accounts do
     |> Repo.insert()
   end
 
-  # =============== CRIA DRIVER =================
-
+  # ------------ CRIA DRIVER --------------
   defp create_driver(attrs) do
-    IO.puts("que tosco")
     attrs =
       attrs
       |> put_password()
@@ -43,8 +43,7 @@ defmodule RideFast.Accounts do
     |> Repo.insert()
   end
 
-  # =============== PASSWORD H =================
-
+  # ------------ HASH PASSWORD ------------
   defp put_password(%{"password" => pwd} = attrs) do
     hash = Bcrypt.hash_pwd_salt(pwd)
 
@@ -53,5 +52,43 @@ defmodule RideFast.Accounts do
     |> Map.put("password", hash)
   end
 
-  defp put_passwor(attrs), do: attrs
+  defp put_password(attrs), do: attrs
+
+
+  # ===========================
+  #  LOGIN
+  # ===========================
+
+  # Busca em user OU driver pelo email
+  def get_by_email(email) do
+    # tenta user
+    case Repo.one(from u in User, where: u.email == ^email) do
+      nil ->
+        # tenta driver
+        Repo.one(from d in Driver, where: d.email == ^email)
+
+      account ->
+        account
+    end
+  end
+
+  # Autentica email + senha
+  def authenticate(email, password) do
+    case get_by_email(email) do
+      nil ->
+        {:error, :invalid_credentials}
+
+      account ->
+        if Bcrypt.verify_pass(password, account.password) do
+          {:ok, account}
+        else
+          {:error, :invalid_credentials}
+        end
+    end
+  end
+
+  # Necessário para o Guardian
+  def get_user_or_driver_by_id(id) do
+    Repo.get(User, id) || Repo.get(Driver, id)
+  end
 end
