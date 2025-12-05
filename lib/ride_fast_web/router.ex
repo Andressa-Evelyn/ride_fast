@@ -1,6 +1,7 @@
 defmodule RideFastWeb.Router do
   use RideFastWeb, :router
   alias RideFastWeb.AccountAuth
+  alias RideFastWeb.Plugs.RequireScope
 
   pipeline :api do
     plug :accepts, ["json"]
@@ -8,6 +9,7 @@ defmodule RideFastWeb.Router do
 
   pipeline :auth do
     plug RideFastWeb.AccountAuth
+    plug RideFastWeb.Plugs.RequireScope, [:admin]
   end
 
   #rotas vão aqui

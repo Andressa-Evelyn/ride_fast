@@ -18,23 +18,23 @@ defmodule RideFast.Accounts.Scope do
 
   alias RideFast.Accounts.{User, Driver, Admin}
 
-  defstruct user: nil
+  defstruct type: nil, entity: nil
 
   @doc """
   Creates a scope for the given user.
 
   Returns nil if no user is given.
   """
-  def for_user(%User{} = user) do
-    %__MODULE__{user: user}
+  def for_user({:user, %User{} = user}) do
+    %__MODULE__{type: :user, entity: user}
   end
 
-    def for_user({ :admin, %Admin{} = admin}) do
-    %__MODULE__{user: admin}
+  def for_user({:admin, %Admin{} = admin}) do
+    %__MODULE__{type: :admin, entity: admin}
   end
 
-    def for_user(%Driver{} = driver) do
-    %__MODULE__{user: driver}
+  def for_user({:driver, %Driver{} = driver}) do
+    %__MODULE__{type: :driver, entity: driver}
   end
 
   def for_user(nil), do: nil
