@@ -1,8 +1,7 @@
 defmodule RideFast.Accounts do
   import Ecto.Query
   alias RideFast.Repo
-  alias RideFast.Accounts.Admin
-  alias RideFast.Accounts.{User, Driver}
+  alias RideFast.Accounts.{User, Driver, AccountToken,Admin}
   alias Bcrypt
 
   # ===========================
@@ -68,8 +67,11 @@ defmodule RideFast.Accounts do
     # tenta user
     case Repo.one(from u in User, where: u.email == ^email) do
       nil ->
-        # tenta driver
-        Repo.one(from d in Driver, where: d.email == ^email)
+        case Repo.one(from u in Admin, where: u.email == ^email) do
+          nil ->
+            Repo.one(from d in Driver, where: d.email == ^email)
+          account -> account
+        end
 
       account ->
         account
@@ -103,7 +105,7 @@ defmodule RideFast.Accounts do
     attrs = %{
       "name" => name,
       "email" => String.downcase(email),
-      "password_hash" => hash
+      "password" => hash
     }
 
     %Admin{}
@@ -119,7 +121,7 @@ defmodule RideFast.Accounts do
     case get_admin_by_email(email) do
       nil -> {:error, :invalid_credentials}
       admin ->
-        if Bcrypt.verify_pass(password, admin.password_hash) do
+        if Bcrypt.verify_pass(password, admin.password) do
           {:ok, admin}
         else
           {:error, :invalid_credentials}
@@ -143,6 +145,38 @@ defmodule RideFast.Accounts do
            order_by: [asc: u.name]
 
     Repo.paginate(query, page: page, page_size: size)
+  end
+
+
+  @doc """
+  Fetches the user by API token.
+  """
+  def fetch_user_by_api_token(token) do
+   AccountToken.verify_api_token_query(token)
+  end
+
+  @doc """
+  Creates a new api token for a user.
+
+  The token returned must be saved somewhere safe.
+  This token cannot be recovered from the database.
+  """
+  def create_user_api_token(user, role) do
+    {encoded_token, user_token} = AccountToken.build_email_token(user, "api-token", role)
+    Repo.insert!(user_token)
+    encoded_token
+  end
+
+  def create_user_api_token(%User{} = user) do
+    create_user_api_token(user, :user)
+  end
+
+  def create_user_api_token(%Driver{} = driver) do
+    create_user_api_token(driver, :driver)
+  end
+
+  def create_user_api_token(%Admin{} = admin) do
+    create_user_api_token(admin, :admin)
   end
 
 

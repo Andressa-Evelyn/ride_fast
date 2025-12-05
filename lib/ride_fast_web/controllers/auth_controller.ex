@@ -41,7 +41,7 @@ defmodule RideFastWeb.AuthController do
   def login(conn, %{"email" => email, "password" => password}) do
     case Accounts.authenticate(email, password) do
       {:ok, account} ->
-        {:ok, token, _claims} = Guardian.encode_and_sign(account)
+        token = Accounts.create_user_api_token(account)
 
         conn
         |> put_status(:ok)

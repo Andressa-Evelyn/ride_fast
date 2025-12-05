@@ -5,7 +5,7 @@ defmodule RideFast.Accounts.Admin do
   schema "admins" do
     field :name, :string
     field :email, :string
-    field :password_hash, :string
+    field :password, :string
 
     timestamps(type: :utc_datetime)
   end
@@ -13,8 +13,8 @@ defmodule RideFast.Accounts.Admin do
   @doc false
   def changeset(admin, attrs) do
     admin
-    |> cast(attrs, [:name, :email, :password_hash])
-    |> validate_required([:name, :email, :password_hash])
+    |> cast(attrs, [:name, :email, :password])
+    |> validate_required([:name, :email, :password])
     |> unique_constraint(:email)
   end
 end

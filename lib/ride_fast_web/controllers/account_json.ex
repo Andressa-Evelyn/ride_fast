@@ -31,7 +31,6 @@ defmodule RideFastWeb.AccountJson do
       id: admin.id,
       name: admin.name,
       email: admin.email,
-      password_hash: admin.password_hash
     }
   end
 

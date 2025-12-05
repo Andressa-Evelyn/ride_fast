@@ -1,10 +1,14 @@
 defmodule RideFastWeb.Router do
   use RideFastWeb, :router
+  alias RideFastWeb.AccountAuth
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug RideFastWeb.AccountAuth
+  end
 
   #rotas vão aqui
   scope "/api", RideFastWeb do
@@ -12,6 +16,7 @@ defmodule RideFastWeb.Router do
 
     post "/auth/register", AuthController, :register
     post "/auth/login", AuthController, :login
+    pipe_through :auth
     get "/users", UserController, :index
 
   end
